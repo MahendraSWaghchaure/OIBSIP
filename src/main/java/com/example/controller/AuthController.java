@@ -3,13 +3,10 @@ package com.example.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
-
 import com.example.dto.UserDto;
 import com.example.entities.User;
 import com.example.services.AuthService;
-
 import javax.validation.Valid;
 
 @RestController
@@ -19,14 +16,10 @@ public class AuthController {
 
     @Autowired
     private AuthService authService;
-    
-    @Autowired
-    private PasswordEncoder passwordEncoder;
 
     @PostMapping("/register")
     public ResponseEntity<?> register(@Valid @RequestBody UserDto userDto) {
         try {
-            userDto.setPassword(passwordEncoder.encode(userDto.getPassword()));
             authService.register(userDto);
             return new ResponseEntity<>("User registered successfully", HttpStatus.CREATED);
         } catch (Exception e) {
