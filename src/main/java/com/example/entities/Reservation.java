@@ -4,6 +4,7 @@ import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
 @Entity
 @Table(name = "reservations")
@@ -27,70 +28,99 @@ public class Reservation {
     @OneToMany(mappedBy = "reservation", cascade = CascadeType.ALL)
     private List<Passenger> passengers;
 
+    @NotNull
+    @Size(min = 10, max = 10)
     private String prn;
 
-	public Long getId() {
-		return id;
-	}
+    // Add Train relationship
+    @ManyToOne
+    @JoinColumn(name = "train_id")
+    private Train train;
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    // Constructor
+    public Reservation() {
+        this.prn = generatePrn(); // Auto-generate PRN when creating a Reservation
+    }
 
-	public String getSource() {
-		return source;
-	}
+    private String generatePrn() {
+        Random random = new Random();
+        StringBuilder prnBuilder = new StringBuilder(10);
+        for (int i = 0; i < 10; i++) {
+            prnBuilder.append(random.nextInt(10)); // Append a random digit (0-9)
+        }
+        return prnBuilder.toString();
+    }
 
-	public void setSource(String source) {
-		this.source = source;
-	}
+    // Add Train getters and setters
+    public Train getTrain() {
+        return train;
+    }
 
-	public String getDestination() {
-		return destination;
-	}
+    public void setTrain(Train train) {
+        this.train = train;
+    }
 
-	public void setDestination(String destination) {
-		this.destination = destination;
-	}
+    // Existing getters and setters
+    public Long getId() {
+        return id;
+    }
 
-	public Date getJourneyDate() {
-		return journeyDate;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public void setJourneyDate(Date journeyDate) {
-		this.journeyDate = journeyDate;
-	}
+    public String getSource() {
+        return source;
+    }
 
-	public int getNumTickets() {
-		return numTickets;
-	}
+    public void setSource(String source) {
+        this.source = source;
+    }
 
-	public void setNumTickets(int numTickets) {
-		this.numTickets = numTickets;
-	}
+    public String getDestination() {
+        return destination;
+    }
 
-	public List<Passenger> getPassengers() {
-		return passengers;
-	}
+    public void setDestination(String destination) {
+        this.destination = destination;
+    }
 
-	public void setPassengers(List<Passenger> passengers) {
-		this.passengers = passengers;
-	}
+    public Date getJourneyDate() {
+        return journeyDate;
+    }
 
-	public String getPrn() {
-		return prn;
-	}
+    public void setJourneyDate(Date journeyDate) {
+        this.journeyDate = journeyDate;
+    }
 
-	public void setPrn(String prn) {
-		this.prn = prn;
-	}
+    public int getNumTickets() {
+        return numTickets;
+    }
 
-	@Override
-	public String toString() {
-		return "Reservation [id=" + id + ", source=" + source + ", destination=" + destination + ", journeyDate="
-				+ journeyDate + ", numTickets=" + numTickets + ", passengers=" + passengers + ", prn=" + prn + "]";
-	}
+    public void setNumTickets(int numTickets) {
+        this.numTickets = numTickets;
+    }
 
-   
-    
+    public List<Passenger> getPassengers() {
+        return passengers;
+    }
+
+    public void setPassengers(List<Passenger> passengers) {
+        this.passengers = passengers;
+    }
+
+    public String getPrn() {
+        return prn;
+    }
+
+    public void setPrn(String prn) {
+        this.prn = prn;
+    }
+
+    @Override
+    public String toString() {
+        return "Reservation [id=" + id + ", source=" + source + ", destination=" + destination + ", journeyDate="
+                + journeyDate + ", numTickets=" + numTickets + ", passengers=" + passengers + ", prn=" + prn 
+                + ", train=" + train + "]";
+    }
 }

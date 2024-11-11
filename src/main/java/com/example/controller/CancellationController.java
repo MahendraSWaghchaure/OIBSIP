@@ -1,5 +1,7 @@
 package com.example.controller;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +21,7 @@ public class CancellationController {
     @PostMapping("/{prn}")
     public ResponseEntity<?> cancelReservation(@PathVariable String prn) {
         try {
-            Reservation cancelledReservation = cancellationService.cancelReservation(prn);
+            Optional<Reservation> cancelledReservation = cancellationService.cancelReservation(prn);
             if (cancelledReservation != null) {
                 return new ResponseEntity<>("Reservation cancelled successfully", HttpStatus.OK);
             }

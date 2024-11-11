@@ -11,7 +11,6 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @EntityScan("com.example.entities")
 @EnableJpaRepositories("com.example.repositories")
 public class OnlineReservationSystemApplication {
-
     public static void main(String[] args) {
         SpringApplication.run(OnlineReservationSystemApplication.class, args);
     }
