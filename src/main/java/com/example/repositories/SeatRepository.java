@@ -42,4 +42,6 @@ public interface SeatRepository extends JpaRepository<Seat, Long> {
     // Uncomment this method if you need to filter by seat type
     // @Query("SELECT s FROM Seat s WHERE s.train.id = :trainId AND s.isAvailable = true AND s.seatType = :seatType")
     // List<Seat> findAvailableSeatsByType(@Param("trainId") Long trainId, @Param("seatType") String seatType);
+    List<Seat> findByReservationId(Long reservationId);
+    
 }

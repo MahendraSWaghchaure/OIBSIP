@@ -14,18 +14,22 @@ public class Reservation {
     private Long id;
 
     @NotNull
+    @Column(nullable = false)
     private String source;
 
     @NotNull
+    @Column(nullable = false)
     private String destination;
 
     @NotNull
+    @Column(nullable = false)
     private Date journeyDate;
 
     @NotNull
+    @Column(nullable = false)
     private int numTickets;
 
-    @OneToMany(mappedBy = "reservation", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "reservation", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Passenger> passengers;
 
     @NotNull
@@ -33,8 +37,8 @@ public class Reservation {
     private String prn;
 
     // Add Train relationship
-    @ManyToOne
-    @JoinColumn(name = "train_id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "train_id",  nullable = false)
     private Train train;
 
     // Constructor

@@ -9,16 +9,23 @@ public class Seat {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
+    @Column(nullable = false)
     private String seatNumber;
+    
+    @Column(nullable = false)
     private String coach;
+    
+    @Column(nullable = false)
     private Boolean isAvailable = true;
+    
+    @Column(nullable = false)
     private String seatType; // WINDOW, MIDDLE, AISLE
     
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "train_id")
     private Train train;
     
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "reservation_id")
     private Reservation reservation;
 

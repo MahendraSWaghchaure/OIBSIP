@@ -11,13 +11,15 @@ public class Passenger {
     private Long id;
 
     @NotNull
+    @Column(nullable = false)
     private String name;
 
     @NotNull
+    @Column(nullable = false)
     private int age;
 
-    @ManyToOne
-    @JoinColumn(name = "reservation_id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "reservation_id", nullable = false)
     private Reservation reservation;
 
 	public Long getId() {
