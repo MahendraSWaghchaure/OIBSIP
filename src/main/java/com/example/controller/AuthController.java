@@ -14,25 +14,25 @@ import javax.validation.Valid;
 @CrossOrigin(origins = "*")
 public class AuthController {
 
-    @Autowired
-    private AuthService authService;
+	@Autowired
+	private AuthService authService;
 
-    @PostMapping("/register")
-    public ResponseEntity<?> register(@Valid @RequestBody UserDto userDto) {
-        try {
-            authService.register(userDto);
-            return new ResponseEntity<>("User registered successfully", HttpStatus.CREATED);
-        } catch (Exception e) {
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
-        }
-    }
+	@PostMapping("/register")
+	public ResponseEntity<?> register(@Valid @RequestBody UserDto userDto) {
+		try {
+			authService.register(userDto);
+			return new ResponseEntity<>("User registered successfully", HttpStatus.CREATED);
+		} catch (Exception e) {
+			return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+		}
+	}
 
-    @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestParam String loginId, @RequestParam String password) {
-        User user = authService.login(loginId, password);
-        if (user != null) {
-            return new ResponseEntity<>(user, HttpStatus.OK);
-        }
-        return new ResponseEntity<>("Invalid credentials", HttpStatus.UNAUTHORIZED);
-    }
+	@PostMapping("/login")
+	public ResponseEntity<?> login(@RequestParam String loginId, @RequestParam String password) {
+		User user = authService.login(loginId, password);
+		if (user != null) {
+			return new ResponseEntity<>(user, HttpStatus.OK);
+		}
+		return new ResponseEntity<>("Invalid credentials", HttpStatus.UNAUTHORIZED);
+	}
 }

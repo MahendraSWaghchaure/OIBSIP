@@ -15,19 +15,19 @@ import com.example.services.CancellationService;
 @CrossOrigin(origins = "*")
 public class CancellationController {
 
-    @Autowired
-    private CancellationService cancellationService;
+	@Autowired
+	private CancellationService cancellationService;
 
-    @PostMapping("/{prn}")
-    public ResponseEntity<?> cancelReservation(@PathVariable String prn) {
-        try {
-            Optional<Reservation> cancelledReservation = cancellationService.cancelReservation(prn);
-            if (cancelledReservation != null) {
-                return new ResponseEntity<>("Reservation cancelled successfully", HttpStatus.OK);
-            }
-            return new ResponseEntity<>("Reservation not found", HttpStatus.NOT_FOUND);
-        } catch (Exception e) {
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
+	@PostMapping("/{prn}")
+	public ResponseEntity<?> cancelReservation(@PathVariable String prn) {
+		try {
+			Optional<Reservation> cancelledReservation = cancellationService.cancelReservation(prn);
+			if (cancelledReservation != null) {
+				return new ResponseEntity<>("Reservation cancelled successfully", HttpStatus.OK);
+			}
+			return new ResponseEntity<>("Reservation not found", HttpStatus.NOT_FOUND);
+		} catch (Exception e) {
+			return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
 }

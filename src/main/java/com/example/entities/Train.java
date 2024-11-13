@@ -6,19 +6,19 @@ import java.util.List;
 @Entity
 @Table(name = "trains")
 public class Train {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    
-    private String trainNumber;
-    private String trainName;
-    private String source;
-    private String destination;
-    private Integer totalSeats;
-    private Double fare;
-    
-    @OneToMany(mappedBy = "train")
-    private List<Seat> seats;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+
+	private String trainNumber;
+	private String trainName;
+	private String source;
+	private String destination;
+	private Integer totalSeats;
+	private Double fare;
+
+	@OneToMany(mappedBy = "train")
+	private List<Seat> seats;
 
 	public Long getId() {
 		return id;
@@ -90,7 +90,5 @@ public class Train {
 				+ ", destination=" + destination + ", totalSeats=" + totalSeats + ", fare=" + fare + ", seats=" + seats
 				+ "]";
 	}
-    
-    
-    
+
 }

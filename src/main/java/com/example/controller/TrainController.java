@@ -11,23 +11,19 @@ import java.util.Date;
 @RequestMapping("/api/trains")
 @CrossOrigin(origins = "*")
 public class TrainController {
-    @Autowired
-    private TrainService trainService;
-    
-    @GetMapping
-    public ResponseEntity<?> getAllTrains(
-        @RequestParam(required = false) String source,
-        @RequestParam(required = false) String destination,
-        @RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") Date date
-    ) {
-        return ResponseEntity.ok(trainService.searchTrains(source, destination, date));
-    }
-    
-    @GetMapping("/{trainNumber}/seats")
-    public ResponseEntity<?> getAvailableSeats(
-        @PathVariable String trainNumber,
-        @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date date
-    ) {
-        return ResponseEntity.ok(trainService.getAvailableSeats(trainNumber, date));
-    }
+	@Autowired
+	private TrainService trainService;
+
+	@GetMapping
+	public ResponseEntity<?> getAllTrains(@RequestParam(required = false) String source,
+			@RequestParam(required = false) String destination,
+			@RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") Date date) {
+		return ResponseEntity.ok(trainService.searchTrains(source, destination, date));
+	}
+
+	@GetMapping("/{trainNumber}/seats")
+	public ResponseEntity<?> getAvailableSeats(@PathVariable String trainNumber,
+			@RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date date) {
+		return ResponseEntity.ok(trainService.getAvailableSeats(trainNumber, date));
+	}
 }

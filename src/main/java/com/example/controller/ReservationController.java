@@ -20,26 +20,26 @@ import com.example.entities.Reservation;
 @RequestMapping("/api/reservations")
 @CrossOrigin(origins = "*")
 public class ReservationController {
-    @Autowired
-    private ReservationService reservationService;
-    
-    @PostMapping
-    public ResponseEntity<?> createReservation(@Valid @RequestBody ReservationDto reservationDto) {
-        try {
-            Reservation reservation = reservationService.createReservation(reservationDto);
-            return ResponseEntity.status(HttpStatus.CREATED).body (reservation);
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
-    }
-    
-    @GetMapping("/{prn}")
-    public ResponseEntity<?> getReservation(@PathVariable String prn) {
-        try {
-            Reservation reservation = reservationService.getReservation(prn);
-            return ResponseEntity.ok(reservation);
-        } catch (Exception e) {
-            return ResponseEntity.notFound().build();
-        }
-    }
+	@Autowired
+	private ReservationService reservationService;
+
+	@PostMapping
+	public ResponseEntity<?> createReservation(@Valid @RequestBody ReservationDto reservationDto) {
+		try {
+			Reservation reservation = reservationService.createReservation(reservationDto);
+			return ResponseEntity.status(HttpStatus.CREATED).body(reservation);
+		} catch (Exception e) {
+			return ResponseEntity.badRequest().body(e.getMessage());
+		}
+	}
+
+	@GetMapping("/{prn}")
+	public ResponseEntity<?> getReservation(@PathVariable String prn) {
+		try {
+			Reservation reservation = reservationService.getReservation(prn);
+			return ResponseEntity.ok(reservation);
+		} catch (Exception e) {
+			return ResponseEntity.notFound().build();
+		}
+	}
 }

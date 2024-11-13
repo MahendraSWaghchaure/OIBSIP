@@ -8,33 +8,33 @@ import com.example.repositories.UserRepository;
 
 @Service
 public class AuthService {
-    
-    @Autowired
-    private UserRepository userRepository;
 
-    public void register(UserDto userDto) {
-        if (userRepository.findByLoginId(userDto.getLoginId()) != null) {
-            throw new RuntimeException("Login ID already exists");
-        }
+	@Autowired
+	private UserRepository userRepository;
 
-        User user = new User();
-        user.setName(userDto.getName());
-        user.setAddress(userDto.getAddress());
-        user.setMobile(userDto.getMobile());
-        user.setEmail(userDto.getEmail());
-        user.setAge(userDto.getAge());
-        user.setLoginId(userDto.getLoginId());
-        user.setPassword(userDto.getPassword()); // Password will be stored as plain text
-        user.setRole("USER");
-        
-        userRepository.save(user);
-    }
+	public void register(UserDto userDto) {
+		if (userRepository.findByLoginId(userDto.getLoginId()) != null) {
+			throw new RuntimeException("Login ID already exists");
+		}
 
-    public User login(String loginId, String password) {
-        User user = userRepository.findByLoginId(loginId);
-        if (user != null && user.getPassword().equals(password)) {
-            return user;
-        }
-        return null;
-    }
+		User user = new User();
+		user.setName(userDto.getName());
+		user.setAddress(userDto.getAddress());
+		user.setMobile(userDto.getMobile());
+		user.setEmail(userDto.getEmail());
+		user.setAge(userDto.getAge());
+		user.setLoginId(userDto.getLoginId());
+		user.setPassword(userDto.getPassword());
+		user.setRole("USER");
+
+		userRepository.save(user);
+	}
+
+	public User login(String loginId, String password) {
+		User user = userRepository.findByLoginId(loginId);
+		if (user != null && user.getPassword().equals(password)) {
+			return user;
+		}
+		return null;
+	}
 }

@@ -6,21 +6,21 @@ import javax.validation.constraints.*;
 @Entity
 @Table(name = "passengers")
 public class Passenger {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-    @NotNull
-    @Column(nullable = false)
-    private String name;
+	@NotNull
+	@Column(nullable = false)
+	private String name;
 
-    @NotNull
-    @Column(nullable = false)
-    private int age;
+	@NotNull
+	@Column(nullable = false)
+	private int age;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "reservation_id", nullable = false)
-    private Reservation reservation;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "reservation_id", nullable = false)
+	private Reservation reservation;
 
 	public Long getId() {
 		return id;
@@ -59,5 +59,4 @@ public class Passenger {
 		return "Passenger [id=" + id + ", name=" + name + ", age=" + age + ", reservation=" + reservation + "]";
 	}
 
-    
 }

@@ -8,16 +8,16 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ControllerAdvice
 public class GlobalExceptionHandler {
-    
-    @ExceptionHandler(ResourceNotFoundException.class)
-    public ResponseEntity<?> handleResourceNotFoundException(ResourceNotFoundException ex) {
-        return ResponseEntity.status(HttpStatus.NOT_FOUND)
-            .body(new ErrorResponse(HttpStatus.NOT_FOUND.value(), ex.getMessage()));
-    }
-    
-    @ExceptionHandler(Exception.class)
-    public ResponseEntity<?> handleGenericException(Exception ex) {
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-            .body(new ErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), ex.getMessage()));
-    }
+
+	@ExceptionHandler(ResourceNotFoundException.class)
+	public ResponseEntity<?> handleResourceNotFoundException(ResourceNotFoundException ex) {
+		return ResponseEntity.status(HttpStatus.NOT_FOUND)
+				.body(new ErrorResponse(HttpStatus.NOT_FOUND.value(), ex.getMessage()));
+	}
+
+	@ExceptionHandler(Exception.class)
+	public ResponseEntity<?> handleGenericException(Exception ex) {
+		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+				.body(new ErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), ex.getMessage()));
+	}
 }

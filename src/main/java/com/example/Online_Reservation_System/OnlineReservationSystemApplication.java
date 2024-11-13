@@ -7,11 +7,11 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
-@ComponentScan(basePackages = {"com.example.*"})
+@ComponentScan(basePackages = { "com.example.*" })
 @EntityScan("com.example.entities")
 @EnableJpaRepositories("com.example.repositories")
 public class OnlineReservationSystemApplication {
-    public static void main(String[] args) {
-        SpringApplication.run(OnlineReservationSystemApplication.class, args);
-    }
+	public static void main(String[] args) {
+		SpringApplication.run(OnlineReservationSystemApplication.class, args);
+	}
 }

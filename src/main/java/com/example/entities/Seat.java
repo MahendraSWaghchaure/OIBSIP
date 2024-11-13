@@ -5,29 +5,29 @@ import javax.persistence.*;
 @Entity
 @Table(name = "seats")
 public class Seat {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    
-    @Column(nullable = false)
-    private String seatNumber;
-    
-    @Column(nullable = false)
-    private String coach;
-    
-    @Column(nullable = false)
-    private Boolean isAvailable = true;
-    
-    @Column(nullable = false)
-    private String seatType; // WINDOW, MIDDLE, AISLE
-    
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "train_id")
-    private Train train;
-    
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "reservation_id")
-    private Reservation reservation;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+
+	@Column(nullable = false)
+	private String seatNumber;
+
+	@Column(nullable = false)
+	private String coach;
+
+	@Column(nullable = false)
+	private Boolean isAvailable = true;
+
+	@Column(nullable = false)
+	private String seatType; // WINDOW, MIDDLE, AISLE
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "train_id")
+	private Train train;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "reservation_id")
+	private Reservation reservation;
 
 	public Long getId() {
 		return id;
@@ -90,7 +90,5 @@ public class Seat {
 		return "Seat [id=" + id + ", seatNumber=" + seatNumber + ", coach=" + coach + ", isAvailable=" + isAvailable
 				+ ", seatType=" + seatType + ", train=" + train + ", reservation=" + reservation + "]";
 	}
-    
-    
-    
+
 }
