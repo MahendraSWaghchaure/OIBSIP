@@ -22,7 +22,7 @@ public class Seat {
 	private Boolean isAvailable = true;
 
 	@Column(nullable = false)
-	private String seatType; // WINDOW, MIDDLE, AISLE
+	private String seatType;
 
 	@ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "train_id")

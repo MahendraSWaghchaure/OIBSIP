@@ -154,7 +154,7 @@ public class NotificationService {
             // Generate the PDF
             String pdfPath = generateReservationPDF(reservation, seats);
 
-            // Create a MimeMessage
+            // Create a Message
             MimeMessage message = emailSender.createMimeMessage();
             MimeMessageHelper helper = new MimeMessageHelper(message, true); // 'true' indicates multipart message
 

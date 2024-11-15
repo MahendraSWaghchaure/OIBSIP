@@ -4,7 +4,6 @@ public class SeatDto {
 	private String preferredCoach;
 	private String preferredSeatType;
 
-	// Getters and Setters
 	public String getPreferredCoach() {
 		return preferredCoach;
 	}

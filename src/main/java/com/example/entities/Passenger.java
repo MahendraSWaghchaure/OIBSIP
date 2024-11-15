@@ -25,8 +25,6 @@ public class Passenger {
     @JsonIgnore 
     private Reservation reservation;
 
-    // Getters and Setters
-
     public Long getId() {
         return id;
     }

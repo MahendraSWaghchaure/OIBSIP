@@ -26,7 +26,7 @@ public class Train {
 	private List<Seat> seats;
 	
 	@OneToMany(mappedBy = "train")
-    @JsonIgnore  // Prevent recursive serialization
+    @JsonIgnore  
     private List<Reservation> reservations;
 
 	public List<Reservation> getReservations() {

@@ -36,7 +36,6 @@ public class User {
 	@Column(name = "role")
 	private String role = "USER";
 
-	// Getters and setters
 	public Long getId() {
 		return id;
 	}
