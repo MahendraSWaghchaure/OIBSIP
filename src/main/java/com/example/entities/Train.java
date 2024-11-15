@@ -1,6 +1,10 @@
 package com.example.entities;
 
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import java.util.List;
 
 @Entity
@@ -17,8 +21,21 @@ public class Train {
 	private Integer totalSeats;
 	private Double fare;
 
-	@OneToMany(mappedBy = "train")
+	@OneToMany(mappedBy = "train", cascade = CascadeType.ALL, orphanRemoval = true)
+	 @JsonIgnore
 	private List<Seat> seats;
+	
+	@OneToMany(mappedBy = "train")
+    @JsonIgnore  // Prevent recursive serialization
+    private List<Reservation> reservations;
+
+	public List<Reservation> getReservations() {
+		return reservations;
+	}
+
+	public void setReservations(List<Reservation> reservations) {
+		this.reservations = reservations;
+	}
 
 	public Long getId() {
 		return id;
@@ -88,7 +105,9 @@ public class Train {
 	public String toString() {
 		return "Train [id=" + id + ", trainNumber=" + trainNumber + ", trainName=" + trainName + ", source=" + source
 				+ ", destination=" + destination + ", totalSeats=" + totalSeats + ", fare=" + fare + ", seats=" + seats
-				+ "]";
+				+ ", reservations=" + reservations + "]";
 	}
+
+	
 
 }

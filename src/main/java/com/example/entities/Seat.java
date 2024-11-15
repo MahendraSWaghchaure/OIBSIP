@@ -2,6 +2,9 @@ package com.example.entities;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "seats")
 public class Seat {
@@ -22,11 +25,13 @@ public class Seat {
 	private String seatType; // WINDOW, MIDDLE, AISLE
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "train_id")
+    @JoinColumn(name = "train_id")
+	@JsonIgnore
 	private Train train;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "reservation_id")
+	@JsonIgnore  
 	private Reservation reservation;
 
 	public Long getId() {
